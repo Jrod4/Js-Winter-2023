@@ -28,13 +28,13 @@ const sentence2 = 'CompreheNSIVe UP-to-DATE neWs CoverAgE, aggRegateD frOM soURC
 ///Q-1
 let sentenceReplace_A = sentence1.replace(/A/ig, 'Queen and king');
 
- console.log(sentenceReplace_A);
+ console.log(`/Q-1\n${sentenceReplace_A}`);
  
 
 ///Q2-1 Answer:98
 let lengthSentence2 = sentence2.length;
 
- console.log(lengthSentence2);
+ console.log(`/Q2-1\n${lengthSentence2}`);
 
 ///Q2-2 Answer:true
 
@@ -42,7 +42,7 @@ let sentenceLow = sentence2.toLowerCase();
 let patternLowerCase = 'COM'.toLowerCase();
 let result1 = sentenceLow.startsWith(patternLowerCase);
  
- console.log(result1);
+ console.log(`/Q2-2\n${result1}`);
 
 ///Q2-3 Answer:false
 
@@ -50,18 +50,26 @@ let sentence_low = sentence2.toLowerCase();
 let pattern_LowerCase = 'Google news'.toLowerCase();
 let result2 = sentence_low.endsWith(pattern_LowerCase);
 
- console.log(result2);
+ console.log(`/Q2-3\n${result2}`);
 
  ///Q2-4 Answer:true
 let sentence_lower = sentence2.toLowerCase();
-let result3 = sentence_lower.includes('from');
+let patternLowerCase1 = 'from'.toLowerCase();
+let result3 = patternLowerCase1.startsWith('from');
 
- console.log(result3);
+//let sentenceLength = sentence_lower.length
 
-///Q2-5 Answer: s
-let characterAt = sentence2.charAt(96);
+ console.log(`/Q2-4\n${result3}`);
+ //console.log(`/Q2-4\n${sentenceLength}`);
+//console.log(patternLowerCase1);
+//console.log(`/Q2-4\n${sentence_lower}`);
 
- console.log(characterAt);
+
+///Q2-5 Answer: .
+let length = sentence2.length - 1
+let characterAT = sentence2.charAt(length);
+
+ console.log(`/Q2-5\n${characterAT}`);
 
 
  
