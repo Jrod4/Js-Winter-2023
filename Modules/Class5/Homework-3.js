@@ -55,7 +55,7 @@ let result2 = sentence_low.endsWith(pattern_LowerCase);
  ///Q2-4 Answer:true
 let sentence_lower = sentence2.toLowerCase();
 let patternLowerCase1 = 'from'.toLowerCase();
-let result3 = patternLowerCase1.startsWith('from');
+let result3 = sentence_lower.startsWith('from');
 
 //let sentenceLength = sentence_lower.length
 
