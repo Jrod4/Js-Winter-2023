@@ -12,16 +12,50 @@
  */
 
 class StudentEnrollment1 {
+
+    constructor(name, age, courseName) { 
+        if (age < 16) {
+            console.log('We only enroll who are 16 or above')
+        } else if (!this.isCourseValid(courseName)) {
+          console.log(`We don't have any course for ${courseName}`);
+        } else {
+          this.studentInformation.sName = name;
+          this.studentInformation.sAge = age;
+          this.studentInformation.sCourseName = courseName;
+          this.studentInformation.sBalance = this.courseInformation.cPrice
+          StudentEnrollment1.studentCounterId++;
+          this.studentInformation.sId = StudentEnrollment1.studentCounterId;
+          console.log(`Congratulations for enrolling in ${courseName}`);
+          console.log(`Your student id: ${this.studentInformation.sId}`);
+        }
+    }
+
+    static studentCounterId = 0;
+
   studentInformation = {
-    sid: 0,
-    sName: "Jeff Rod",
-    sAge: 29,
-    sCourseName: "Web Development",
-    sBalance: 5000,
-    sGrade: "A",
+    sId: 0,
+    sName: "Default",
+    sAge: 0,
+    sCourseName: "Default",
+    sBalance: 0,
+    sGrade: "-",
   };
 
-  courseInformation = [
+  studentDetails () {
+    console.log(`\nStudentd Details`)
+    console.log(`\nId : ${this.studentInformation.sId}`);
+    console.log(`\nName : ${this.studentInformation.sName}`);
+    console.log(`\nAge : ${this.studentInformation.sAge}`);
+    console.log(`\nCourse Name: ${this.studentInformation.sCourseName}`);
+    console.log(`\nBalance : ${this.studentInformation.sBalance}`);
+    console.log(`\nGrade : ${this.studentInformation.sGrade}`);
+    
+  }
+    isCourseValid(courseName) {
+        return StudentEnrollment1.courseInformation.find(cObject => cObject.cName.toLowerCase().localeCompare(courseName.toLowerCase()) === 0)
+    }
+
+  static courseInformation = [
     {
       cName: "Web Development",
       cPrice: 5000,
@@ -75,3 +109,4 @@ class StudentEnrollment1 {
     }
   }
 }
+module.exports = StudentEnrollment1
