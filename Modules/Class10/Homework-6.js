@@ -88,11 +88,17 @@ let reverseStr2 = '';           // final answer must be in the variable8*/
 console.log(`\n\nQuestion 2 answer:\n`);
 
 let str7 = "have a great day";
+let arr1Str1 = str7.split(' ')
+let reverseStr1 = ''
 
-let reverseStr1 = str7.split(" ").reverse().join(" ");
+for (let i=arr1Str1.length-1 ; i>=0 ; i--) {
+ reverseStr1 = reverseStr1 + arr1Str1[i] + ' '
+}
+console.log(reverseStr1);
+//let reverseStr1 = str7.split(" ").reverse().join(" ");
 //let f = [...'have a great day'].reverse().join(' ');
 
-console.log(reverseStr1);
+//console.log(reverseStr1);
 
 let str8 = "good morning";
 
@@ -165,6 +171,7 @@ for (let i = 0; i < arr3.length; i++) {
 let avg3 = sum3 / arr3.length;
 
 console.log(avg3);
+
 
 /**
  * Q4:
@@ -288,3 +295,5 @@ for (let i = 0; i < arr7.length; i++) {
 }
 
 console.log(arr7);
+
+

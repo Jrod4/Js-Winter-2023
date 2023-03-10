@@ -21,17 +21,22 @@ console.log('Q1\n');
 
 let words = ["hApPY", "gIFts", "laUGhable", "leARning", "GrOW", "coNNecT"];
 
-let smallest = words[0];
+let smallest = [0];
+let smallestLength = [0].length
 
-function getSmallest() {
-    for (let i = 0; i < words.length; i++) {
-        if (words[i] < smallest) {
-             return words[i];
+function getSmallest(inputArray) {
+    let smallest = inputArray[0];
+    let smallestLength = inputArray[0].length;
+    for (let i = 0; i <= inputArray.length-1; i++) {
+        if (smallest < smallestLength) {
+          smallest = inputArray[x];
         }
  }
+ return smallest
  }
 
- console.log(getSmallest(words));
+console.log(getSmallest(["hApPY", "gIFts", "laUGhable", "leARning", "GrOW", "coNNecT"]));
+
 
 
 

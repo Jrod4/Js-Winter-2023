@@ -34,20 +34,26 @@ class teacherHire {
     } else {
       this.teacherInfo.tName = name;
       this.teacherInfo.tAge = age;
-      const courseObject = this.isCourseValid(courseName)
-      this.teacherInfo.tCourseName = courseName;
-      this.teacherInfo.tBalance = courseData.cSalary;
+      const courseObject = this.isCourseValid(courseName);
+      this.teacherInfo.tCourseName = courseObject.cName;
+      this.teacherInfo.tSalary = courseObject.cSalary;
       teacherHire.teacherCounterId++;
       this.teacherInfo.tId = teacherHire.teacherCounterId;
-      console.log(`Congratulations for enrolling in ${courseName}`);
-      console.log(`Your student id: ${this.teacherInfo.tId}`);
+      console.log(
+        `\nWelcome ${name} for course ${this.teacherInfo.tCourseName}`
+      );
+      console.log(`Your Teacher id: ${this.teacherInfo.tId}`);
     }
   }
-    isCourseValid(courseName) {
-        return teacherHire.courseData.find(cObject => cObject.cName.toLowerCase().localeCompare(courseName.toLowerCase()) === 0)
-    }
-  
- static teacherCounterId = 0;
+  isCourseValid(courseName) {
+    return this.courseData.find(
+      (cObject) =>
+        cObject.cName.toLowerCase().localeCompare(courseName.toLowerCase()) ===
+        0
+    );
+  }
+
+  static teacherCounterId = 0;
 
   teacherInfo = {
     tId: 0,
@@ -55,57 +61,61 @@ class teacherHire {
     tAge: 0,
     tCourseName: "Default",
     tSalary: 0,
-    
   };
 
-  teacherDetails () {
-    console.log(`\nTeacher Details`)
-    console.log(`\nId : ${this.teacherInfo.tId}`);
-    console.log(`\nName : ${this.teacherInfo.tName}`);
-    console.log(`\nAge : ${this.teacherInfo.tAge}`);
-    console.log(`\nCourse Name: ${this.teacherInfo.tCourseName}`);
-    console.log(`\nSalary : ${this.teacherInfo.tSalary}`);
+  teacherDetails() {
+    console.log(`\nTeacher Details`);
+    console.log(`Id : ${this.teacherInfo.tId}`);
+    console.log(`Name : ${this.teacherInfo.tName}`);
+    console.log(`Age : ${this.teacherInfo.tAge}`);
+    console.log(`Course Name: ${this.teacherInfo.tCourseName}`);
+    console.log(`Salary : ${this.teacherInfo.tSalary}`);
   }
 
-    changeName(newName) {
+  changeName(newName) {
     if (newName.localCompare(this.teacherInfo.tName) === 0) {
-      console.log(`\nName cannot be updated; as you have same name already stored in the system.${this.sName}`);
+      console.log(
+        `\nName cannot be updated; as you have same name already stored in the system.${this.sName}`
+      );
     } else {
       this.teacherInfo.tName = newName;
       console.log(`\nYou've succesfully updated your name to ${this.tName}.`);
     }
   }
 
-  studentGrade(sID,sGrade) {
- const studentInfoObj = studentEnrollment.findByStudentID(sID);
-   if (!studentInfoObj) {
-            console.log(`\nIncorrect student id "${studentId}" provided`);
-       } else if (studentInfoObj.sGrade.localeCompare('-') !== 0) {
-            console.log(`\nStudent with id "${studentId}" is already graded; to update student-grade pls use updateGrade-method`);
-       } else {
-            studentInfoObj.sGrade = sGrade;
-            console.log(`\nThank you for grading student with id`);
-       }
+  studentGrade(sID, sGrade) {
+    const studentInfoObj = studentEnrollment.findStudentById(sID);
+    if (!studentInfoObj) {
+      console.log(`\nIncorrect student id "${sID}" provided`);
+    } else if (studentInfoObj.sGrade.localeCompare("-") !== 0) {
+      console.log(
+        `\nStudent with id "${sID}" is already graded; to update student-grade pls use updateGrade-method`
+      );
+    } else {
+      studentInfoObj.sGrade = sGrade;
+      console.log(`\nThank you for grading student with id = ${sID}`);
     }
+  }
 
-    updateGrade(sID,sGrade) {
-        const studentInfoObj = studentEnrollment.findByStudentID(sID);
-        if (!studentInfoObj) {
-          console.log(`\nIncorrect student id "${sID}" provided`);
-        } else if (studentInfoObj.sGrade.localeCompare('-') === 0 && studentInfoObj.sGrade.localeCompare('-') !== 0 ){
-            console.log('Student is not graded; to provide student-grade pls use gradeStudent-method');
-        } else if (studentInfoObj.sGrade.localeCompare('-') === 0){
-            console.log("Student has the same grade");
-        } else {
-            studentInfoObj.sGrade = sGrade;
-            console.log(`Thank you for updating grade of student with id ${sID}`);
-        }
+  updateGrade(sID, newGrade) {
+    const studentInfoObj = studentEnrollment.findStudentById(sID);
+    if (!studentInfoObj) {
+      console.log(`\nIncorrect student id "${sID}" provided`);
+    } else if (studentInfoObj.sGrade.localeCompare("-") === 0) {
+      console.log(
+        "\nStudent is not graded; to provide student-grade pls use gradeStudent-method"
+      );
+    } else if (
+      studentInfoObj.sGrade
+        .toLowerCase()
+        .localeCompare(newGrade.toLowerCase()) === 0
+    ) {
+      console.log("\nStudent has the same grade");
+    } else {
+      studentInfoObj.sGrade = newGrade;
+      console.log(`\nThank you for updating grade of student with id ${sID}`);
     }
-        
+  }
 }
 
-
-
-
 module.exports = teacherHire;
-

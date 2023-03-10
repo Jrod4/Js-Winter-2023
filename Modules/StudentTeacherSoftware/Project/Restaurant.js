@@ -1,11 +1,8 @@
-// const Members = require("./Members");
+const Members = require("./Members");
 
-// class Restaurant extends Members {
+// class Restaurant extends Members
 
-
-// }
-
-class Restaurant {
+class Restaurant extends Members {
   static RestaurantIdCounter = 0;
 
   restaurantInfo = {
@@ -19,6 +16,7 @@ class Restaurant {
   };
 
   constructor(restaurantName, cityName, maxGuestCapacity, totalEmployees) {
+    super();
     if (restaurantName.length < 1) {
       console.log("invalid input requires more than one letter");
     } else if (cityName.length < 1) {
@@ -31,31 +29,42 @@ class Restaurant {
       this.restaurantInfo.rName = restaurantName;
       this.restaurantInfo.rCity = cityName;
       this.restaurantInfo.rMaxGuestCapacity = maxGuestCapacity;
-      this.restaurantInfo.rTotalEmployees = totalEmployees;
+      // this.restaurantInfo.rTotalEmployees = totalEmployees;
+      this.membersInfo.TotalMembers = totalEmployees;
       this.restaurantInfo.restaurantId = ++Restaurant.RestaurantIdCounter;
       console.log(`\nThank you for registering! ${this.restaurantInfo.rName}`);
       console.log(
-        `\nThis is your restaurant Id is ${this.restaurantInfo.restaurantId}`
+        `This is your restaurant Id is ${this.restaurantInfo.restaurantId}\n`
       );
     }
   }
 
   open() {
     if (this.restaurantInfo.CurrentStatus === "open") {
-      console.log("Restaurant is already open");
+      console.log("\nRestaurant is already open");
     } else {
       this.restaurantInfo.CurrentStatus = "open";
-      console.log("the Restaurant is open");
+      this.restaurantInfo.isOpen = false;
+      console.log("\nThe Restaurant is open");
     }
   }
 
   close() {
     if (this.restaurantInfo.CurrentStatus === "closed") {
-      console.log("Restaurant is already closed");
+      console.log("\nRestaurant is already closed");
     } else {
       this.restaurantInfo.CurrentStatus = "closed";
-      console.log("the Restaurant is closed");
+      console.log("\nThe Restaurant is closed");
     }
+  }
+
+  clean() {
+    console.log("Restaurant area is now clean");
+    super.clean();
+  }
+
+  showCurrentGuestCount() {
+    console.log(`\nCurrent Guest Count: ${this.restaurantInfo.rGuestsSittingNow}`);
   }
 
   showRestaurantDetails() {
@@ -63,9 +72,38 @@ class Restaurant {
     console.log(`Name : ${this.restaurantInfo.rName}`);
     console.log(`City : ${this.restaurantInfo.rCity}`);
     console.log(`Max Guest : ${this.restaurantInfo.rMaxGuestCapacity}`);
-    console.log(`Total Employees: ${this.restaurantInfo.rTotalEmployees}`);
+    console.log(`Total Employees: ${this.membersInfo.TotalMembers}`);
     console.log(`Restaurant Id : ${this.restaurantInfo.restaurantId}`);
     console.log(`Current Status : ${this.restaurantInfo.CurrentStatus}`);
+  }
+
+  // removeEmployee(y) {
+  //   switch (this.removeMembers(y)) {
+  //     case "Error1":
+  //       console.log("Please input atleast 1 employee!");
+  //       break;
+  //     case "Error2":
+  //       console.log(
+  //         "There are less employees that the number of employees you want to remove!!"
+  //       );
+  //       break;
+  //     case "Error3":
+  //       console.log("Please make sure to input a NUMBER!");
+  //       break;
+  //     case "Success":
+  //       console.log("Number fo employees got removeed successfully!");
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
+
+  addEmployee(numEmpToAdd) {
+    this.addMembers(numEmpToAdd, 'employee');
+  }
+
+  removeEmployee(numEmpToRemove) {
+    this.removeMembers(numEmpToRemove, "employee");
   }
 }
 module.exports = Restaurant;
